@@ -12,13 +12,11 @@ $dataHandler = new DataHandler();
 $students = $dataHandler->getStudents();
 $courses = $dataHandler->getCourse();
 
-// Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['add_course'])) {
         $studentId = $_POST['student_id'];
         $courseId = $_POST['course'];
 
-        // Add the student to the selected course
         $dataHandler->addStudentToCourse($studentId, $courseId);
         header("Location: manageStudents.php"); // Refresh page to see changes
         exit;

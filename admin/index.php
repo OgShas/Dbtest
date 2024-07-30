@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../src/dataHandler.php'; // Adjust the path as needed
+require_once '../src/dataHandler.php';
 
 //check the user is already logged in
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in']) {

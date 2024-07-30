@@ -2,6 +2,12 @@
 require_once '../src/db-connection.php';
 require_once '../src/dataHandler.php';
 
+session_start();
+if (!isset($_SESSION['student_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
 $dataHandler = new DataHandler();
 $conn = new Database();
 
