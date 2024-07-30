@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $courseId = $_POST['course'];
 
         $dataHandler->addStudentToCourse($studentId, $courseId);
-        header("Location: manageStudents.php"); // Refresh page to see changes
+        header("Location: manageStudents.php");
         exit;
     }
 
@@ -28,12 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Remove the student from the selected course
         $dataHandler->removeStudentFromCourse($studentId, $courseId);
-        header("Location: manageStudents.php"); // Refresh page to see changes
+        header("Location: manageStudents.php");
         exit;
     }
 }
 
-// Get the selected student and their current courses if set
 $selectedStudentId = isset($_POST['student_id']) ? $_POST['student_id'] : null;
 $currentCourses = $selectedStudentId ? $dataHandler->getStudentCourses($selectedStudentId) : [];
 ?>
