@@ -19,14 +19,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Invalid town or course ID");
     }
 
+    // Add the student
     $addStudent = $dataHandler->addStudent($username, $password, $name, $townID);
 
     if ($addStudent) {
         $studentID = $addStudent;
+        // Add the student to the course
         $add_current_student_to_course = $dataHandler->addStudentToCourse($studentID, $courseID);
 
         if ($add_current_student_to_course) {
-            echo "New student and course registration added successfully!";
+            // Registration successful, redirect to login page
+            header("Location: login.php");
+            exit();
         } else {
             echo "Error: " . $add_current_student_to_course->errorInfo()[2];
         }
@@ -39,6 +43,14 @@ $towns = $dataHandler->getTowns();
 $courses = $dataHandler->getCourse();
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Student</title>
+</head>
+<body>
 <h1>Add New Student</h1>
 <form method="POST" action="register.php">
     <label for="username">Username:</label>
@@ -70,3 +82,5 @@ $courses = $dataHandler->getCourse();
     </select><br><br>
     <input type="submit" value="Register">
 </form>
+</body>
+</html>

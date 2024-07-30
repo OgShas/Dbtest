@@ -63,6 +63,14 @@ JOIN
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getStudentById($studentId)
+    {
+        $query = "SELECT id, name FROM students WHERE id = ?";
+        $stmt = $this->db->getConnection()->prepare($query);
+        $stmt->execute([$studentId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function getUserByUsername($username)
     {
         $conn = $this->db->getConnection();
